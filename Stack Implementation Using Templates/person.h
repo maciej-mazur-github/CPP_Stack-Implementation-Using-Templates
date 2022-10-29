@@ -6,23 +6,23 @@
 
 using namespace::std;
 
-class person
+class Person
 {
 	string name;
 public:
-	person(string arg = "")
+	Person(string arg = "")
 		: name(arg) {}
-	person(int a)
+	Person(int a)
 		: name("") {}
 
 	void operator=(int arg) { name = ""; }
-	void operator=(string arg) { name = ""; }
+	void operator=(string arg) { name = arg; }
 
 
-	friend ostream& operator<<(ostream& out, const person& arg);
+	friend ostream& operator<<(ostream& out, const Person& arg);
 };
 
-ostream& operator<<(ostream& out, const person& arg)
+ostream& operator<<(ostream& out, const Person& arg)
 {
 	out << arg.name;
 	return out;

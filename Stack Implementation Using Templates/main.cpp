@@ -11,19 +11,21 @@ using namespace std;
 
 int main()
 {
-	stack<int, 8> ex1;
-	stack<int, 5> ex2;
+	Stack<int, 8> ex1;
+	Stack<int, 5> ex2;
 
 	int a = 0;
 
 	cout << "*****************************";
-	cout << "\nInitiating ex1 stack:" << endl;
+	cout << "\nInitiating ex1 Stack:" << endl;
+	int intArray[10];
+
 	for (int i = 0; i < 10; i++)
 	{
-		a = i * 2;
-		ex1.push(a);
-		cout << ".";
+		intArray[i] = i * 2;
 	}
+
+	ex1.loadArrayOfObjects(intArray, 10);
 	cout << "\n*****************************";
 
 
@@ -34,7 +36,7 @@ int main()
 
 
 	cout << "\n\n*****************************";
-	cout << "\nInitiating ex2 stack using ex1:" << endl;
+	cout << "\nInitiating ex2 Stack using ex1:" << endl;
 	int elementNumber = ex1.getElementCounter();
 
 	for (int i = 0; i < elementNumber; i++)
@@ -53,7 +55,7 @@ int main()
 	cout << ex2;
 	cout << "\n*****************************";
 
-	stack < string, 10> ex3;
+	Stack < string, 10> ex3;
 
 	string a1 = "Loma", b1 = "Chenko", c1 = "Foxtrot";
 
@@ -72,5 +74,22 @@ int main()
 	//ex3.pop();
 	cout << ex3.pop();
 
+
+	Stack<Person, 3> ex4;
+
+	cout << "\n\n************************************\n";
+	cout << "Creating array of Person and pushing each person to stack ex4:\n";
+
+	Person personArray [] = {Person("John"), Person("Peter"), Person("Adam"), Person("Kate")};
+
+	personArray[3] = "Mary";
+
+	ex4.loadArrayOfObjects(personArray, 4);
+
+	cout << "\n*****************************\n";
+
+	cout << "\nCurrent ex4 status:" << endl;
+	cout << ex4;
+	cout << "\n*****************************";
 
 }
