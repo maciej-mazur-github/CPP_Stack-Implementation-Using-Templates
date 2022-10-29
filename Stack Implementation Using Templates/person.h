@@ -15,15 +15,10 @@ public:
 	Person(int a)
 		: name("") {}
 
-	void operator=(int arg) { name = ""; }
-	void operator=(string arg) { name = arg; }
+	void operator=(int arg);
+	void operator=(string arg);
 
 
 	friend ostream& operator<<(ostream& out, const Person& arg);
 };
 
-ostream& operator<<(ostream& out, const Person& arg)
-{
-	out << arg.name;
-	return out;
-}

@@ -55,7 +55,7 @@ int main()
 	cout << ex2;
 	cout << "\n*****************************";
 
-	Stack < string, 10> ex3;
+	Stack <string, 10> ex3;
 
 	string a1 = "Loma", b1 = "Chenko", c1 = "Foxtrot";
 
@@ -71,7 +71,6 @@ int main()
 
 	ex3.pop();
 	ex3.pop();
-	//ex3.pop();
 	cout << ex3.pop();
 
 

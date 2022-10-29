@@ -15,16 +15,16 @@ ostream& operator<<(ostream& out, typename Stack<T, tab_size>& arg);
 template <class T, int tab_size>
 class Stack
 {
-	int Stack_capacity;
+	int stack_capacity;
 	T* array_ptr;
-	int Stack_element_counter;
+	int stack_element_counter;
 public:
 	Stack()
 	{
-		Stack_capacity = tab_size;
+		stack_capacity = tab_size;
 
-		array_ptr = new T[Stack_capacity];
-		Stack_element_counter = 0;
+		array_ptr = new T[stack_capacity];
+		stack_element_counter = 0;
 	}
 
 	friend ostream& operator<< <T, tab_size> (ostream& out, typename Stack<T, tab_size>& arg);
@@ -32,7 +32,7 @@ public:
 	~Stack() { delete[] array_ptr; }
 	void push(T arg);
 	T pop();
-	int getElementCounter() { return Stack_element_counter; }
+	int getElementCounter() { return stack_element_counter; }
 	void loadArrayOfObjects(T arr[], int arraySize);
 private:
 	void expand_Stack();
@@ -51,7 +51,7 @@ void Stack<T, tab_size>::loadArrayOfObjects(T arr[], int arraySize)
 template <class T, int tab_size>
 ostream& operator<<(ostream& out, typename Stack<T, tab_size>& arg)
 {
-	int elementNumber = arg.Stack_element_counter;
+	int elementNumber = arg.stack_element_counter;
 
 	for (int i = 0; i < elementNumber; i++)
 	{
@@ -66,51 +66,51 @@ ostream& operator<<(ostream& out, typename Stack<T, tab_size>& arg)
 template <class T, int tab_size>
 void Stack<T, tab_size>::push(T arg)
 {
-	if (Stack_element_counter == Stack_capacity)
+	if (stack_element_counter == stack_capacity)
 	{
 		cout << "\nThe Stack has got full. This will now be expanded by additional " << tab_size << " fields\n";
 		expand_Stack();
 	}
 
-	array_ptr[Stack_element_counter] = arg;
-	Stack_element_counter++;
+	array_ptr[stack_element_counter] = arg;
+	stack_element_counter++;
 }
 
 
 template <class T, int tab_size>
 T Stack<T, tab_size>::pop()
 {
-	if (Stack_element_counter <= 0)
+	if (stack_element_counter <= 0)
 	{
 		cout << "\nThe Stack is empty\n";
 		return NULL;
 	}
 
 
-	return array_ptr[--Stack_element_counter];
+	return array_ptr[--stack_element_counter];
 }
 
 
 template <>
 string Stack<string, 10>::pop()     // template specialization to avoid the attempt to return NULL value as String
 {
-	if (Stack_element_counter <= 0)
+	if (stack_element_counter <= 0)
 	{
 		cout << "\nThe Stack is empty\n";
 		return "";
 	}
 
-	return array_ptr[--Stack_element_counter];
+	return array_ptr[--stack_element_counter];
 }
 
 
 template <class T, int tab_size>
 void Stack<T, tab_size>::expand_Stack()
 {
-	Stack_capacity += tab_size;
-	T* new_array = new T[Stack_capacity];
+	stack_capacity += tab_size;
+	T* new_array = new T[stack_capacity];
 
-	for (int i = 0; i < Stack_element_counter; i++)
+	for (int i = 0; i < stack_element_counter; i++)
 	{
 		new_array[i] = array_ptr[i];
 	}
