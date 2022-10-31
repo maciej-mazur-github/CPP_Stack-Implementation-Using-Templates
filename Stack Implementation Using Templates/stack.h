@@ -5,42 +5,42 @@
 
 using namespace std;
 
-template <class T, int tab_size>
+template <class T, int tabSize>
 class Stack;
 
-template <class T, int tab_size>
-ostream& operator<<(ostream& out, typename Stack<T, tab_size>& arg);
+template <class T, int tabSize>
+ostream& operator<<(ostream& out, typename Stack<T, tabSize>& arg);
 
 
-template <class T, int tab_size>
+template <class T, int tabSize>
 class Stack
 {
-	int stack_capacity;
-	T* array_ptr;
-	int stack_element_counter;
+	int stackCapacity;
+	T* arrayPtr;
+	int stackElementCounter;
 public:
 	Stack()
 	{
-		stack_capacity = tab_size;
+		stackCapacity = tabSize;
 
-		array_ptr = new T[stack_capacity];
-		stack_element_counter = 0;
+		arrayPtr = new T[stackCapacity];
+		stackElementCounter = 0;
 	}
 
-	friend ostream& operator<< <T, tab_size> (ostream& out, typename Stack<T, tab_size>& arg);
+	friend ostream& operator<< <T, tabSize> (ostream& out, typename Stack<T, tabSize>& arg);
 
-	~Stack() { delete[] array_ptr; }
+	~Stack() { delete[] arrayPtr; }
 	void push(T arg);
 	T pop();
-	int getElementCounter() { return stack_element_counter; }
+	int getElementCounter() { return stackElementCounter; }
 	void loadArrayOfObjects(T arr[], int arraySize);
 private:
-	void expand_Stack();
+	void expandStack();
 };
 
 
-template <class T, int tab_size>
-void Stack<T, tab_size>::loadArrayOfObjects(T arr[], int arraySize)
+template <class T, int tabSize>
+void Stack<T, tabSize>::loadArrayOfObjects(T arr[], int arraySize)
 {
 	for (int i = 0; i < arraySize; i++) {
 		this->push(arr[i]);
@@ -48,14 +48,14 @@ void Stack<T, tab_size>::loadArrayOfObjects(T arr[], int arraySize)
 	}
 }
 
-template <class T, int tab_size>
-ostream& operator<<(ostream& out, typename Stack<T, tab_size>& arg)
+template <class T, int tabSize>
+ostream& operator<<(ostream& out, typename Stack<T, tabSize>& arg)
 {
-	int elementNumber = arg.stack_element_counter;
+	int elementNumber = arg.stackElementCounter;
 
 	for (int i = 0; i < elementNumber; i++)
 	{
-		cout << arg.array_ptr[i] << "\t";
+		cout << arg.arrayPtr[i] << "\t";
 	}
 
 	return out;
@@ -63,58 +63,58 @@ ostream& operator<<(ostream& out, typename Stack<T, tab_size>& arg)
 
 
 
-template <class T, int tab_size>
-void Stack<T, tab_size>::push(T arg)
+template <class T, int tabSize>
+void Stack<T, tabSize>::push(T arg)
 {
-	if (stack_element_counter == stack_capacity)
+	if (stackElementCounter == stackCapacity)
 	{
-		cout << "\nThe Stack has got full. This will now be expanded by additional " << tab_size << " fields\n";
-		expand_Stack();
+		cout << "\nThe Stack has got full. This will now be expanded by additional " << tabSize << " fields\n";
+		expandStack();
 	}
 
-	array_ptr[stack_element_counter] = arg;
-	stack_element_counter++;
+	arrayPtr[stackElementCounter] = arg;
+	stackElementCounter++;
 }
 
 
-template <class T, int tab_size>
-T Stack<T, tab_size>::pop()
+template <class T, int tabSize>
+T Stack<T, tabSize>::pop()
 {
-	if (stack_element_counter <= 0)
+	if (stackElementCounter <= 0)
 	{
 		cout << "\nThe Stack is empty\n";
 		return NULL;
 	}
 
 
-	return array_ptr[--stack_element_counter];
+	return arrayPtr[--stackElementCounter];
 }
 
 
 template <>
 string Stack<string, 10>::pop()     // template specialization to avoid the attempt to return NULL value as String
 {
-	if (stack_element_counter <= 0)
+	if (stackElementCounter <= 0)
 	{
 		cout << "\nThe Stack is empty\n";
 		return "";
 	}
 
-	return array_ptr[--stack_element_counter];
+	return arrayPtr[--stackElementCounter];
 }
 
 
-template <class T, int tab_size>
-void Stack<T, tab_size>::expand_Stack()
+template <class T, int tabSize>
+void Stack<T, tabSize>::expandStack()
 {
-	stack_capacity += tab_size;
-	T* new_array = new T[stack_capacity];
+	stackCapacity += tabSize;
+	T* newArray = new T[stackCapacity];
 
-	for (int i = 0; i < stack_element_counter; i++)
+	for (int i = 0; i < stackElementCounter; i++)
 	{
-		new_array[i] = array_ptr[i];
+		newArray[i] = arrayPtr[i];
 	}
 
-	delete[] array_ptr;
-	array_ptr = new_array;
+	delete[] arrayPtr;
+	arrayPtr = newArray;
 }
